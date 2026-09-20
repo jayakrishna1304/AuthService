@@ -18,7 +18,7 @@ public class JwtService {
     @Value("${jwt.expiration}")
     private long expiration;
 
-    public String generateToken(String email, String role) {
+    public String generateToken(Integer userId, String email, String role) {
 
         SecretKey key = Keys.hmacShaKeyFor(
                 secretKey.getBytes(StandardCharsets.UTF_8)
@@ -26,6 +26,7 @@ public class JwtService {
 
         return Jwts.builder()
                 .subject(email)
+                .claim("userId", userId) // 🌟 ADDED CLAIM: Passing the database ID everywhere!
                 .claim("role", role)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + expiration))

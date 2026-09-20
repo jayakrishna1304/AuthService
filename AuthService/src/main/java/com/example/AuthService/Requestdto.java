@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 @Data
 public class Requestdto {
-    private String user_name;
-    private String user_password;
-    private String user_email;
-    private String user_role;
+    private String userName;
+    private String userPassword;
+    private String userEmail;
+    private String userRole;
 }
